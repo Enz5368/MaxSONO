@@ -84,16 +84,26 @@ textarea {
   white-space: nowrap;
 }
 
-.brand-mark {
+.brand-mark,
+.brand-logo {
   display: grid;
   place-items: center;
-  width: 38px;
-  height: 38px;
+  width: 52px;
+  height: 42px;
+}
+
+.brand-mark {
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 8px;
   background: linear-gradient(135deg, var(--magenta), var(--violet) 54%, var(--blue));
   box-shadow: 0 0 28px rgba(255, 46, 166, 0.35);
   font-size: 0.82rem;
+}
+
+.brand-logo {
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 28px rgba(255, 46, 166, 0.24);
 }
 
 .main-nav {
@@ -203,6 +213,13 @@ textarea {
   position: relative;
   z-index: 2;
   width: min(760px, 100%);
+}
+
+.hero-logo {
+  width: min(340px, 76vw);
+  margin-bottom: 24px;
+  border-radius: 8px;
+  filter: drop-shadow(0 22px 46px rgba(0, 0, 0, 0.42));
 }
 
 .eyebrow {
@@ -710,6 +727,12 @@ select option {
   gap: 28px;
   align-items: center;
   padding: clamp(28px, 5vw, 52px);
+}
+
+.contact-logo {
+  width: min(320px, 100%);
+  margin-bottom: 26px;
+  border-radius: 8px;
 }
 
 .contact-details {
