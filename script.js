@@ -109,7 +109,7 @@ function initCopyLinks() {
 }
 
 async function copyContact(text, label = "Copié") {
-  const copied = await clipboardCopy(text) || fallbackCopy(text);
+  const copied = fallbackCopy(text) || await clipboardCopy(text);
 
   if (copied) {
     showCopyToast(`${label} : ${text}`);
