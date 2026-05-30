@@ -196,9 +196,9 @@
           <p>Configurez votre événement en quelques clics et obtenez une estimation personnalisée. Le prix final sera confirmé après échange avec Max Sono.</p>
         </div>
 
-        <form class="quote-form" name="devis-max-sono" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
-          <input type="hidden" name="form-name" value="devis-max-sono">
-          <p class="hidden-field"><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <form class="quote-form" name="devis-max-sono" method="POST" action="https://formspree.io/f/mnjryjnl">
+          <input type="hidden" name="_subject" value="Nouvelle demande de devis Max Sono">
+          <input type="hidden" name="_next" value="https://maxsono.vercel.app/merci.html">
           <input type="hidden" name="profil_client" id="field-profile">
           <input type="hidden" name="type_evenement" id="field-event">
           <input type="hidden" name="nombre_invites" id="field-guests">
@@ -214,6 +214,15 @@
                 <p class="eyebrow">Progression</p>
                 <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
                 <p class="step-count"><span id="step-current">1</span> / 7</p>
+                <ol class="step-dots" aria-label="Étapes du devis">
+                  <li class="active"><span>Profil</span></li>
+                  <li><span>Événement</span></li>
+                  <li><span>Invités</span></li>
+                  <li><span>Durée</span></li>
+                  <li><span>Options</span></li>
+                  <li><span>Lieu</span></li>
+                  <li><span>Contact</span></li>
+                </ol>
               </div>
               <div class="total-box">
                 <span>Total estimé</span>

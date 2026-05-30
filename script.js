@@ -53,6 +53,7 @@ const prevButton = document.querySelector("#prev-step");
 const nextButton = document.querySelector("#next-step");
 const progressBar = document.querySelector("#progress-bar");
 const stepCurrent = document.querySelector("#step-current");
+const stepDots = document.querySelectorAll(".step-dots li");
 const estimateText = document.querySelector("#estimate-text");
 const liveSummary = document.querySelector("#live-summary");
 const finalSummary = document.querySelector("#final-summary");
@@ -88,14 +89,42 @@ if (quoteForm) {
     updateQuote();
   });
 
-  quoteForm.addEventListener("submit", (event) => {
+  quoteForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
     if (!canContinue(true)) {
-      event.preventDefault();
       return;
     }
 
     updateHiddenFields();
+    await submitQuoteForm();
   });
+}
+
+async function submitQuoteForm() {
+  const submitButton = quoteForm.querySelector(".submit-btn");
+  const defaultLabel = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "Envoi en cours...";
+  formAlert.textContent = "";
+
+  try {
+    const response = await fetch(quoteForm.action, {
+      method: "POST",
+      body: new FormData(quoteForm),
+      headers: { Accept: "application/json" }
+    });
+
+    if (!response.ok) {
+      throw new Error("Formspree submit failed");
+    }
+
+    window.location.href = quoteForm.querySelector('[name="_next"]')?.value || "merci.html";
+  } catch (error) {
+    formAlert.textContent = "L'envoi a échoué. Vous pouvez réessayer ou envoyer un mail directement.";
+    submitButton.disabled = false;
+    submitButton.textContent = defaultLabel;
+  }
 }
 
 function initCopyLinks() {
@@ -232,6 +261,11 @@ function setStep(step) {
   nextButton.style.display = quoteState.step === 7 ? "none" : "inline-flex";
   progressBar.style.width = `${(quoteState.step / 7) * 100}%`;
   stepCurrent.textContent = quoteState.step;
+  stepDots.forEach((dot, index) => {
+    const dotStep = index + 1;
+    dot.classList.toggle("active", dotStep === quoteState.step);
+    dot.classList.toggle("done", dotStep < quoteState.step);
+  });
   formAlert.textContent = "";
   updateQuote();
 }

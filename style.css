@@ -521,6 +521,47 @@ h3 {
   color: var(--muted);
 }
 
+.step-dots {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding: 0;
+  margin: 14px 0 0;
+  list-style: none;
+}
+
+.step-dots li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.step-dots li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.step-dots li.active::before,
+.step-dots li.done::before {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--magenta), var(--blue));
+}
+
+.step-dots li.active::before {
+  transform: scale(1.28);
+  box-shadow: 0 0 20px rgba(21, 216, 255, 0.26);
+}
+
+.step-dots span {
+  display: none;
+}
+
 .total-box {
   padding: 20px;
   border: 1px solid rgba(229, 189, 104, 0.24);
@@ -953,6 +994,133 @@ select option {
     grid-template-columns: 1fr;
   }
 
+  .configurator-section {
+    padding-top: 56px;
+  }
+
+  .configurator-section .section-heading {
+    margin-bottom: 16px;
+  }
+
+  .configurator-section .section-heading h2 {
+    font-size: clamp(1.65rem, 7vw, 2.25rem);
+  }
+
+  .configurator-section .section-heading p {
+    max-width: 46ch;
+    font-size: 0.96rem;
+    line-height: 1.5;
+  }
+
+  .estimate-panel {
+    position: sticky;
+    top: 66px;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: minmax(116px, 0.75fr) minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+    background: rgba(12, 12, 18, 0.96);
+    backdrop-filter: blur(16px);
+  }
+
+  .estimate-panel .eyebrow {
+    margin-bottom: 8px;
+    font-size: 0.68rem;
+  }
+
+  .progress-track {
+    height: 6px;
+  }
+
+  .step-count {
+    margin: 6px 0 0;
+    font-size: 0.9rem;
+  }
+
+  .step-dots {
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .step-dots li::before {
+    width: 7px;
+    height: 7px;
+  }
+
+  .total-box {
+    align-self: stretch;
+    display: grid;
+    align-content: center;
+    padding: 12px;
+  }
+
+  .total-box strong {
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+
+  .summary-box {
+    display: none;
+  }
+
+  .steps {
+    padding: 18px;
+  }
+
+  .step h3 {
+    margin: 0 0 14px;
+    font-size: 1.18rem;
+  }
+
+  .choice-grid {
+    gap: 8px;
+  }
+
+  .choice {
+    min-height: 52px;
+    padding: 11px 13px;
+    line-height: 1.25;
+  }
+
+  .choice span {
+    margin-top: 3px;
+    font-size: 0.78rem;
+  }
+
+  .form-grid {
+    gap: 10px;
+  }
+
+  label {
+    gap: 5px;
+    font-size: 0.86rem;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 10px 12px;
+  }
+
+  textarea {
+    min-height: 96px;
+  }
+
+  .final-summary {
+    margin: 14px 0;
+    padding: 14px;
+  }
+
+  .step-actions {
+    position: sticky;
+    bottom: 76px;
+    z-index: 4;
+    margin: 16px -2px 0;
+    padding-top: 10px;
+    background: linear-gradient(180deg, transparent, rgba(15, 15, 23, 0.96) 35%);
+  }
+
   .price-card {
     min-height: 0;
   }
@@ -988,8 +1156,7 @@ select option {
   }
 
   .hero-actions,
-  .contact-actions,
-  .step-actions {
+  .contact-actions {
     flex-direction: column;
   }
 
@@ -1006,6 +1173,37 @@ select option {
   .steps,
   .estimate-panel {
     padding: 20px;
+  }
+
+  .configurator {
+    border-radius: 8px;
+  }
+
+  .estimate-panel {
+    top: 62px;
+    grid-template-columns: minmax(98px, 0.7fr) minmax(0, 1fr);
+    padding: 12px;
+  }
+
+  .steps {
+    padding: 16px;
+  }
+
+  .step-actions {
+    flex-direction: row;
+    bottom: 64px;
+    gap: 8px;
+  }
+
+  .step-actions .btn {
+    flex: 1;
+    width: auto;
+    min-height: 44px;
+    padding: 0 12px;
+  }
+
+  .submit-btn {
+    min-height: 46px;
   }
 
   .final-summary dl {
